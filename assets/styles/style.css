@@ -1,1 +1,10 @@
 /* add header background gradient  */
+
+header {
+  background-color: blue;
+  color: white;
+}
+
+header h1 {
+  padding: 10px;
+}
