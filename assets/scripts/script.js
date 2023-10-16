@@ -25,7 +25,7 @@ $(".search-panel").on("click", ".btn", function(event) {
   }
   $(".weather").attr("style", "visibility: visible");
   $("#city-search").val("");
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityArr[0]}&limit=1&appid=${token}`)
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityArr[0]}&limit=1&appid=${token}`)
     .then(function (response) {
       return response.json();
     })
