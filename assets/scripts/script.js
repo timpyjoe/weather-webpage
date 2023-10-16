@@ -7,8 +7,8 @@ var lon = "";
 
 $(".btn").on("click", function(event) {
   $("div").remove(".card");
-  var city = "Fargo"
-  // var city = $("#city-search").val();
+  // var city = "Fargo"
+  var city = $("#city-search").val();
   $(".weather").attr("style", "visibility: visible");
   $("#city-search").val("");
   cityArr.push(city);
