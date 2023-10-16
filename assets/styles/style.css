@@ -1,6 +1,6 @@
 /* add header background gradient  */
 
-* {
+main {
   margin: auto;
 }
 
@@ -18,8 +18,9 @@ div {
 }
 
 button {
-  padding: 10px;
+  margin-top: 10px;
 }
+
 
 #current-weather {
   border:black solid 3px;
@@ -28,4 +29,13 @@ button {
 .card {
   border:black solid 3px;
   background-color: lightblue;
+  margin: 5px;
+}
+
+.search-panel {
+  margin-left: auto;
+}
+
+.weather {
+  margin-right: auto;
 }

@@ -1,18 +1,31 @@
 const token = '9dfb3982f4e44cee088dc829481cd269';
 
+
 var cityArr = [];
 
 var lat = "";
 var lon = "";
 
-$(".btn").on("click", function(event) {
+
+
+$(".search-panel").on("click", ".btn", function(event) {
+  // clears the previous 5 day forecast and resets search history
   $("div").remove(".card");
-  // var city = "Fargo"
-  var city = $("#city-search").val();
+  $(".history").empty();
+
+  if (event.target.matches("#submit")) {
+    var city = $("#city-search").val();
+  }
+  else {
+    var city = event.target.getAttribute("value");
+  }
+  cityArr.unshift(city);
+  if (cityArr.length > 5) {
+    cityArr.pop();
+  }
   $(".weather").attr("style", "visibility: visible");
   $("#city-search").val("");
-  cityArr.push(city);
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${token}`)
+  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityArr[0]}&limit=1&appid=${token}`)
     .then(function (response) {
       return response.json();
     })
@@ -24,7 +37,6 @@ $(".btn").on("click", function(event) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         let tempF = Math.floor(data.list[0].main.temp);
         let tempC = Math.floor((tempF - 32) * 5/9);
         let temps = `${tempF}°F / ${tempC}°C`;
@@ -85,9 +97,12 @@ $(".btn").on("click", function(event) {
         }
       })
     })
-    var nextCity = document.createElement("button");
-    nextCity.setAttribute("class", "btn btn-secondary col-12");
-    nextCity.textContent = city;
-    nextCity.setAttribute("type", "button");
-    $(".search-panel").append(nextCity);
+    cityArr.forEach(function(city) {
+      var nextCity = document.createElement("button");
+      nextCity.setAttribute("class", "btn btn-secondary col-12");
+      nextCity.textContent = city;
+      nextCity.setAttribute("value", city);
+      nextCity.setAttribute("type", "button");
+      $(".history").append(nextCity);
+    })
   })
