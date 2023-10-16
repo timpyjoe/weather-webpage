@@ -1,5 +1,9 @@
 /* add header background gradient  */
 
+* {
+  margin: auto;
+}
+
 header {
   background-color: blue;
   color: white;
@@ -15,4 +19,12 @@ div {
 
 button {
   padding: 10px;
+}
+
+#current-weather {
+  border:black solid 3px;
+}
+
+.card {
+  border:black solid 3px;
 }
