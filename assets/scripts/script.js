@@ -37,6 +37,7 @@ $(".search-panel").on("click", ".btn", function(event) {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         let tempF = Math.floor(data.list[0].main.temp);
         let tempC = Math.floor((tempF - 32) * 5/9);
         let temps = `${tempF}°F / ${tempC}°C`;
@@ -47,7 +48,7 @@ $(".search-panel").on("click", ".btn", function(event) {
         let windSpeed = data.list[0].wind.speed;
         // Sets the data for the 'current weather' section of the page
         $("#city-date").text(`${city} (${dayjs(date0).format('ddd, MMM D')})`);
-        $("#icon").addClass(icon);
+        $("#icon").attr("src", `https://openweathermap.org/img/w/${icon}.png`);
         $("#temp").text(`Temp: ${temps}`);
         $("#wind").text(`Wind: ${windSpeed} mph`);
         $("#humid").text(`Humidity: ${humidity}%`);
@@ -72,8 +73,8 @@ $(".search-panel").on("click", ".btn", function(event) {
           forecastDate.textContent = dayjs(date).format('ddd, MMM D');
           content.appendChild(forecastDate);
 
-          let nextIcon = document.createElement("i");
-          nextIcon.setAttribute("class", icon);
+          let nextIcon = document.createElement("img");
+          nextIcon.setAttribute("src", `https://openweathermap.org/img/w/${icon}.png`);
           content.appendChild(nextIcon);
           
           let nextTemp = document.createElement("p");
